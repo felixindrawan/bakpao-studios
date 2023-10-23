@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_sections_spacers",
+  "info": {
+    "displayName": "Spacer",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "height": {
+      "type": "customField",
+      "options": [
+        "0.5rem:0.5",
+        "1rem:1",
+        "2rem:2",
+        "4rem:4",
+        "6rem:6",
+        "8rem:8",
+        "16rem:16",
+        "32rem:32"
+      ],
+      "customField": "plugin::multi-select.multi-select"
+    },
+    "background": {
+      "type": "customField",
+      "options": [
+        "Transparent:transparent",
+        "White:white",
+        "Black:black"
+      ],
+      "customField": "plugin::multi-select.multi-select"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "bakpao-studios",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application for Bakpao Studios",
+  "scripts": {
+    "dev": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@strapi/plugin-i18n": "4.10.4",
+    "@strapi/plugin-users-permissions": "4.10.4",
+    "@strapi/strapi": "4.10.4",
+    "better-sqlite3": "8.0.1",
+    "strapi-plugin-multi-select": "^1.2.2",
+    "strapi-plugin-populate-deep": "^3.0.0"
+  },
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "strapi": {
+    "uuid": "cef1415d-2471-4ceb-9d07-0b4eddfc79a4"
+  },
+  "engines": {
+    "node": ">=14.19.1 <=18.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}
