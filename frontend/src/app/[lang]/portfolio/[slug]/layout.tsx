@@ -28,56 +28,76 @@ export default function LayoutRoute({
   const [meta, setMeta] = useState<Meta | undefined>();
   const [data, setData] = useState<Collection[]>([]);
   const [isLoading, setLoading] = useState(true);
-  const currentCollection = data?.filter(
-    ({ attributes }) => attributes?.slug === params.slug,
-  )[0];
+  const [currentCollection, setCurrentCollection] = useState<{
+    title: string;
+    description: string;
+  }>({ title: "", description: "" });
 
-  const fetchData = useCallback(async (start: number, limit: number) => {
-    setLoading(true);
-    try {
-      const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
-      const path = `/collections`;
-      const urlParamsObject = {
-        sort: { createdAt: "desc" },
-        populate: "deep",
-        pagination: {
-          start: start,
-          limit: limit,
-        },
-      };
-      const options = { headers: { Authorization: `Bearer ${token}` } };
-      const responseData = await fetchAPI(path, urlParamsObject, options);
+  const fetchAllCollections = useCallback(
+    async (start: number, limit: number) => {
+      setLoading(true);
+      try {
+        const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
+        const path = `/collections`;
+        const urlParamsObject = {
+          sort: { createdAt: "desc" },
+          populate: {
+            fields: ["title", "slug"],
+          },
+          pagination: {
+            start: start,
+            limit: limit,
+          },
+        };
+        const options = { headers: { Authorization: `Bearer ${token}` } };
+        const responseData = await fetchAPI(path, urlParamsObject, options);
+        const currentCollectionData = await fetchAPI(
+          path,
+          {
+            filters: { slug: params.slug },
+            populate: {
+              fields: ["title", "description"],
+            },
+          },
+          options,
+        );
 
-      if (start === 0) {
-        setData(responseData.data);
-      } else {
-        setData((prevData: any[]) => [...prevData, ...responseData.data]);
+        if (start === 0) {
+          setData(responseData.data);
+          setCurrentCollection(currentCollectionData.data[0]?.attributes);
+        } else {
+          setData((prevData: any[]) => [...prevData, ...responseData.data]);
+        }
+
+        setMeta(responseData.meta);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
       }
-
-      setMeta(responseData.meta);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+    },
+    [params.slug],
+  );
 
   function loadMoreCollections(): void {
     const nextCollections = meta!.pagination.start + meta!.pagination.limit;
-    fetchData(nextCollections, Number(process.env.NEXT_PUBLIC_PAGE_LIMIT));
+    fetchAllCollections(
+      nextCollections,
+      Number(process.env.NEXT_PUBLIC_PAGE_LIMIT),
+    );
   }
 
   useEffect(() => {
-    fetchData(0, Number(process.env.NEXT_PUBLIC_PAGE_LIMIT));
-  }, [fetchData]);
+    fetchAllCollections(0, Number(process.env.NEXT_PUBLIC_PAGE_LIMIT));
+  }, [fetchAllCollections]);
 
   if (isLoading) return <Loader />;
 
   return (
     <div className="mx-auto space-y-5 sm:px-6 lg:max-w-7xl lg:px-8 ">
       <CollectionInfo
-        title={currentCollection.attributes.title}
-        description={currentCollection.attributes.description}
+        title={currentCollection?.title}
+        description={currentCollection?.description}
       />
       <div className="lg:grid lg:grid-cols-12 lg:gap-8">
         {/* Left Navbar */}
