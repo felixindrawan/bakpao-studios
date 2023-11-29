@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from "react";
 import { fetchAPI } from "@/app/[lang]/utils/fetch-api";
 
 import Loader from "@/app/[lang]/components/Loader";
-import PostList from "@/app/[lang]/components/PostList";
+import PostList from "@/app/[lang]/components/blog/PostList";
 import PageHeader from "@/app/[lang]/components/PageHeader";
 
 interface Meta {
@@ -14,7 +14,7 @@ interface Meta {
   };
 }
 
-export default function BlogPage() {
+export default function BlogRoute() {
   const [meta, setMeta] = useState<Meta | undefined>();
   const [data, setData] = useState<any>([]);
   const [isLoading, setLoading] = useState(true);

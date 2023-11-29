@@ -1,6 +1,6 @@
 import React from "react";
 
-import ArticleSelect from "@/app/[lang]/components/ArticleSelect";
+import ArticleSelect from "@/app/[lang]/components/blog/ArticleSelect";
 import { fetchAPI } from "@/app/[lang]/utils/fetch-api";
 
 async function fetchSideMenuData(filter: string) {

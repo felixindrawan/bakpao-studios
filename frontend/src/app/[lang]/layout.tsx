@@ -1,18 +1,17 @@
-// ./frontend/src/app/[lang]/layout.tsx
-
 import type { Metadata } from "next";
-import "./globals.css";
-import { getStrapiMedia, getStrapiURL } from "./utils/api-helpers";
-import { fetchAPI } from "./utils/fetch-api";
 
-import { i18n } from "../../../i18n-config";
-import Footer from "./components/Footer";
-import Navbar from "./components/strapi/sections/Navbar";
+import "@/app/[lang]/globals.css";
+import { i18n } from "@/../i18n-config";
+
+import { getStrapiMedia, getStrapiURL } from "@/app/[lang]/utils/api-helpers";
+import { fetchAPI } from "@/app/[lang]/utils/fetch-api";
+import Footer from "@/app/[lang]/components/Footer";
+import Navbar from "@/app/[lang]/components/strapi/sections/Navbar";
 import { ThemeProvider } from "@/app/[lang]/components/ThemeProvider";
 
 const FALLBACK_SEO = {
   title: "Bakpao Studios",
-  description: "Bakpao Studios© by Caitlin T.",
+  description: "Bakpao Studios by Caitlin T.",
 };
 
 async function getGlobal(): Promise<any> {
@@ -86,13 +85,10 @@ export default async function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar
             links={navbar.links}
-            logoUrl={navbarLogoUrl}
+            logoImage={navbar.navbarLogo.logoImg}
             logoText={navbar.navbarLogo.logoText}
           />
-          <main className="min-h-screen dark:bg-black dark:text-gray-100">
-            {children}
-          </main>
-
+          <main className="dark:bg-black dark:text-gray-100">{children}</main>
           <Footer
             logoUrl={footerLogoUrl}
             logoText={footer.footerLogo.logoText}

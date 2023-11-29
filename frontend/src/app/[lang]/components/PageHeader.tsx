@@ -1,5 +1,3 @@
-// ./frontend/src/app/[lang]/components/PageHeader.tsx
-
 import React from "react";
 
 interface PageHeaderProps {

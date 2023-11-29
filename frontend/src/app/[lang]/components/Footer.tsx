@@ -85,7 +85,7 @@ export default function Footer({
   socialLinks: Array<FooterLink>;
 }) {
   return (
-    <footer className="py-6 dark:bg-black dark:text-gray-50">
+    <footer className="dark:text-gray-20 mt-[20vh] py-6 dark:bg-black">
       <div className=" container mx-auto space-y-6 divide-y divide-gray-400 divide-opacity-50 px-6 md:space-y-12">
         <div className="grid grid-cols-12">
           <div className="col-span-full pb-6 md:col-span-6 md:pb-0">

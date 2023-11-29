@@ -4,7 +4,7 @@
 @import "react-slideshow-image/dist/styles.css";
 
 body {
-  @apply dark:bg-black;
+  @apply bg-gradient-to-r from-rose-100 to-teal-100 p-6 dark:from-black dark:to-black  md:p-20 lg:p-48;
 }
 
 /******************************************* 
