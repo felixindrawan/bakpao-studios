@@ -18,7 +18,7 @@
     "name": {
       "type": "string"
     },
-    "productLink": {
+    "productURL": {
       "type": "string"
     }
   }

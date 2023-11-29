@@ -1,10 +1,11 @@
 {
-  "kind": "collectionType",
+  "kind": "singleType",
   "collectionName": "home_pages",
   "info": {
     "singularName": "home-page",
     "pluralName": "home-pages",
     "displayName": "Home Page",
+    "name": "home-page",
     "description": ""
   },
   "options": {
@@ -65,7 +66,6 @@
         "sections.hero",
         "sections.large-video",
         "sections.lead-form",
-        "sections.pricing",
         "sections.gallery",
         "sections.bottom-actions",
         "sections.spacer"

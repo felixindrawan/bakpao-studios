@@ -9,10 +9,14 @@
     "name": {
       "type": "string"
     },
-    "products": {
+    "media": {
       "type": "component",
       "repeatable": true,
-      "component": "elements.feature"
+      "component": "shared.media"
+    },
+    "padding": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

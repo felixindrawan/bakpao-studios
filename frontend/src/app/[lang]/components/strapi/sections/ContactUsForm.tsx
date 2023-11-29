@@ -88,18 +88,13 @@ export default function ContactUsForm({ data }: { data: ContactUsFormProps }) {
       method="POST"
       className="mx-auto max-w-xl"
     >
-      {title && <div className="mb-5 text-lg text-gray-900">{title}</div>}
-      {description && (
-        <div className="mb-5 text-sm  text-gray-900">{description}</div>
-      )}
+      {title && <div className="mb-5 text-lg ">{title}</div>}
+      {description && <div className="mb-5 text-sm  ">{description}</div>}
       {email && (
-        <div className="mb-5 text-sm  text-gray-900">
+        <div className="mb-5 text-sm  ">
           Feel free to contact me either through this form or directly emailing
           us at{" "}
-          <a
-            href={`mailto:${email}`}
-            className="text-sm font-semibold text-gray-900"
-          >
+          <a href={`mailto:${email}`} className="text-sm font-semibold ">
             {email}
           </a>
           !
@@ -111,7 +106,7 @@ export default function ContactUsForm({ data }: { data: ContactUsFormProps }) {
             <div className="sm:col-span-2" key={i}>
               <label
                 htmlFor={id}
-                className="block text-sm font-semibold leading-6 text-gray-900"
+                className="block text-sm font-semibold leading-6 "
               >
                 {label} <span className="text-red-400">*</span>
               </label>
@@ -127,7 +122,7 @@ export default function ContactUsForm({ data }: { data: ContactUsFormProps }) {
                     name={id}
                     id={id}
                     rows={4}
-                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 px-3.5 py-2  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 ) : (
                   <input
@@ -141,7 +136,7 @@ export default function ContactUsForm({ data }: { data: ContactUsFormProps }) {
                     name={id}
                     id={id}
                     autoComplete={autoComplete}
-                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-400 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 px-3.5 py-2 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-violet-400 sm:text-sm sm:leading-6"
                   />
                 )}
               </div>

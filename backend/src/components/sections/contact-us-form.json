@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_sections_contact_us_forms",
+  "info": {
+    "displayName": "Contact Us Form",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "email": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}

@@ -11,12 +11,6 @@
     },
     "description": {
       "type": "text"
-    },
-    "feature": {
-      "displayName": "Feature",
-      "type": "component",
-      "repeatable": true,
-      "component": "elements.feature"
     }
   }
 }

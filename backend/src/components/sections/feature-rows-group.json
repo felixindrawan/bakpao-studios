@@ -6,11 +6,5 @@
     "icon": "bars"
   },
   "options": {},
-  "attributes": {
-    "features": {
-      "type": "component",
-      "repeatable": true,
-      "component": "elements.feature-row"
-    }
-  }
+  "attributes": {}
 }
