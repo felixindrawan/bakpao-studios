@@ -2,9 +2,9 @@
 import { useState, useEffect, useCallback } from "react";
 import { fetchAPI } from "@/app/[lang]/utils/fetch-api";
 
-import Loader from "@/app/[lang]/components/Loader";
-import PostList from "@/app/[lang]/components/blog/PostList";
-import PageHeader from "@/app/[lang]/components/PageHeader";
+import Loader from "@/app/components/Loader";
+import PostList from "@/app/components/blog/PostList";
+import PageHeader from "@/app/components/PageHeader";
 
 interface Meta {
   pagination: {

@@ -1,11 +1,11 @@
-import RichText from "@/app/[lang]/components/strapi/shared/RichText";
-import ImageSlider from "@/app/[lang]/components/strapi/shared/ImageSlider";
-import Quote from "@/app/[lang]/components/strapi/shared/Quote";
-import StrapiMedia from "@/app/[lang]/components/strapi/native/StrapiMedia";
-import VideoEmbed from "@/app/[lang]/components/strapi/shared/VideoEmbed";
-import Gallery from "@/app/[lang]/components/strapi/sections/Gallery";
-import Spacer from "@/app/[lang]/components/strapi/sections/Spacer";
-import ContactUsForm from "@/app/[lang]/components/strapi/sections/ContactUsForm";
+import RichText from "@/app/components/strapi/shared/RichText";
+import ImageSlider from "@/app/components/strapi/shared/ImageSlider";
+import Quote from "@/app/components/strapi/shared/Quote";
+import StrapiMedia from "@/app/components/strapi/native/StrapiMedia";
+import VideoEmbed from "@/app/components/strapi/shared/VideoEmbed";
+import Gallery from "@/app/components/strapi/sections/Gallery";
+import Spacer from "@/app/components/strapi/sections/Spacer";
+import ContactUsForm from "@/app/components/strapi/sections/ContactUsForm";
 
 export function globalRenderer(section: any, index: number) {
   switch (section.__component) {

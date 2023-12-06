@@ -1,7 +1,7 @@
-import Gallery from "../strapi/sections/Gallery";
-import { Collection, Product } from "../../portfolio/page";
+import Gallery from "@/app/components/strapi/sections/Gallery";
+import { Collection, Product } from "@/app/[lang]/portfolio/page";
 import { useMemo } from "react";
-import { MediaProps } from "../strapi/shared/Media";
+import { MediaProps } from "@/app/components/strapi/shared/Media";
 
 export default function CollectionList({
   collections,

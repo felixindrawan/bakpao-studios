@@ -2,10 +2,10 @@
 import { useState, useEffect, useCallback } from "react";
 import { fetchAPI } from "@/app/[lang]/utils/fetch-api";
 
-import Loader from "@/app/[lang]/components/Loader";
-import CollectionSelect from "@/app/[lang]/components/portfolio/CollectionSelect";
-import CollectionInfo from "@/app/[lang]/components/portfolio/CollectionInfo";
-import { Collection } from "../page";
+import Loader from "@/app/components/Loader";
+import CollectionSelect from "@/app/components/portfolio/CollectionSelect";
+import CollectionInfo from "@/app/components/portfolio/CollectionInfo";
+import { Collection } from "@/app/[lang]/portfolio/page";
 
 interface Meta {
   pagination: {

@@ -1,9 +1,11 @@
 "use client";
-import Logo from "@/app/[lang]/components/Logo";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ThemeSwitcher } from "@/app/[lang]/components/ThemeProvider/ThemeSwitcher";
-import StrapiMedia, { StrapiMediaProps } from "../native/StrapiMedia";
+import StrapiMedia, {
+  StrapiMediaProps,
+} from "@/app/components/strapi/native/StrapiMedia";
+import { useTheme } from "next-themes";
+import { Theme } from "@/app/components/ThemeProvider";
 
 interface NavLink {
   id: number;
@@ -41,12 +43,15 @@ function NavLink({ url, text }: NavLink) {
 export default function Navbar({
   links,
   logoImage,
+  logoImageDark,
   logoText,
 }: {
   links: Array<NavLink>;
   logoImage: StrapiMediaProps["file"] | null;
+  logoImageDark: StrapiMediaProps["file"] | null;
   logoText: string | null;
 }) {
+  const { theme } = useTheme();
   return (
     <div className="mb-6 dark:bg-black dark:text-gray-100">
       <div className="container mx-auto  px-6">
@@ -55,8 +60,11 @@ export default function Navbar({
           aria-label="Back to homepage"
           className="flex justify-center p-2"
         >
-          {logoImage && (
-            <StrapiMedia data={{ file: logoImage }} className="sm:max-w-sm" />
+          {logoImage && logoImageDark && (
+            <StrapiMedia
+              data={{ file: theme === Theme.DARK ? logoImageDark : logoImage }}
+              className="sm:max-w-sm"
+            />
           )}
         </Link>
         {logoText && (
@@ -64,7 +72,6 @@ export default function Navbar({
         )}
       </div>
       <div className="flex flex-shrink-0 justify-center  p-6">
-        <ThemeSwitcher />
         <ul className="flex items-stretch space-x-3">
           {links.map((item: NavLink) => (
             <NavLink key={item.id} {...item} />

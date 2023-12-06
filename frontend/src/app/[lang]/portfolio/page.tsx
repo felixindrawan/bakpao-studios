@@ -2,12 +2,12 @@
 import { useState, useEffect, useCallback } from "react";
 import { fetchAPI } from "@/app/[lang]/utils/fetch-api";
 
-import Loader from "@/app/[lang]/components/Loader";
-import CollectionList from "../components/portfolio/CollectionList";
-import { StrapiComponent } from "../utils/global-renderer";
-import { MediaProps } from "../components/strapi/shared/Media";
-import CollectionSelect from "../components/portfolio/CollectionSelect";
-import CollectionInfo from "../components/portfolio/CollectionInfo";
+import Loader from "@/app/components/Loader";
+import CollectionList from "@/app/components/portfolio/CollectionList";
+import { StrapiComponent } from "@/app/[lang]/utils/global-renderer";
+import { MediaProps } from "@/app/components/strapi/shared/Media";
+import CollectionSelect from "@/app/components/portfolio/CollectionSelect";
+import CollectionInfo from "@/app/components/portfolio/CollectionInfo";
 
 export type Product = StrapiComponent & {
   attributes: {

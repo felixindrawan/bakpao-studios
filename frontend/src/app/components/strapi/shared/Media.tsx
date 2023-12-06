@@ -1,7 +1,7 @@
 import { ImageProps } from "next/image";
 import StrapiMedia, {
   StrapiMediaProps,
-} from "@/app/[lang]/components/strapi/native/StrapiMedia";
+} from "@/app/components/strapi/native/StrapiMedia";
 
 export type MediaProps = {
   image: StrapiMediaProps["file"];

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Collection } from "../page";
-import CollectionList from "../../components/portfolio/CollectionList";
-import { fetchAPI } from "../../utils/fetch-api";
+import { Collection } from "@/app/[lang]/portfolio/page";
+import CollectionList from "@/app/components/portfolio/CollectionList";
+import { fetchAPI } from "@/app/[lang]/utils/fetch-api";
 
 async function getCollectionBySlug(slug: string) {
   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;

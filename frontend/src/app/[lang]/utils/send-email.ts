@@ -1,4 +1,4 @@
-import { FormData } from "@/app/[lang]/components/strapi/sections/ContactUsForm";
+import { FormData } from "@/app/components/strapi/sections/ContactUsForm";
 
 export async function sendEmail(data: FormData) {
   const apiEndpoint = "/api/email";

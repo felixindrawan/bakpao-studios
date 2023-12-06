@@ -1,6 +1,6 @@
 import StrapiMedia, {
   StrapiMediaProps,
-} from "@/app/[lang]/components/strapi/native/StrapiMedia";
+} from "@/app/components/strapi/native/StrapiMedia";
 import Link from "next/link";
 
 interface ButtonProps {

@@ -5,9 +5,9 @@ import { i18n } from "@/../i18n-config";
 
 import { getStrapiMedia, getStrapiURL } from "@/app/[lang]/utils/api-helpers";
 import { fetchAPI } from "@/app/[lang]/utils/fetch-api";
-import Footer from "@/app/[lang]/components/Footer";
-import Navbar from "@/app/[lang]/components/strapi/sections/Navbar";
-import { ThemeProvider } from "@/app/[lang]/components/ThemeProvider";
+import Footer from "@/app/components/Footer";
+import Navbar from "@/app/components/strapi/sections/Navbar";
+import { ThemeProvider } from "@/app/components/ThemeProvider";
 
 const FALLBACK_SEO = {
   title: "Bakpao Studios",
@@ -29,7 +29,9 @@ async function getGlobal(): Promise<any> {
       "favicon",
       "navbar.links",
       "navbar.navbarLogo.logoImg",
+      "navbar.navbarLogo.logoImgDark",
       "footer.footerLogo.logoImg",
+      "footer.footerLogo.logoImgDark",
       "footer.menuLinks",
       "footer.legalLinks",
       "footer.socialLinks",
@@ -71,12 +73,11 @@ export default async function RootLayout({
 
   const { navbar, footer } = global.data.attributes;
 
-  const navbarLogoUrl = getStrapiMedia(
-    navbar.navbarLogo.logoImg.data.attributes.url,
-  );
-
   const footerLogoUrl = getStrapiMedia(
     footer.footerLogo.logoImg.data.attributes.url,
+  );
+  const footerLogoUrlDark = getStrapiMedia(
+    footer.footerLogo.logoImgDark.data.attributes.url,
   );
 
   return (
@@ -86,11 +87,13 @@ export default async function RootLayout({
           <Navbar
             links={navbar.links}
             logoImage={navbar.navbarLogo.logoImg}
+            logoImageDark={navbar.navbarLogo.logoImgDark}
             logoText={navbar.navbarLogo.logoText}
           />
           <main className="dark:bg-black dark:text-gray-100">{children}</main>
           <Footer
             logoUrl={footerLogoUrl}
+            logoUrlDark={footerLogoUrlDark}
             logoText={footer.footerLogo.logoText}
             menuLinks={footer.menuLinks}
             categoryLinks={footer.categories.data}

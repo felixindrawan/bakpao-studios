@@ -2,7 +2,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { fetchAPI } from "@/app/[lang]/utils/fetch-api";
 
-import Loader from "@/app/[lang]/components/Loader";
+import Loader from "@/app/components/Loader";
 import { globalRenderer } from "@/app/[lang]/utils/global-renderer";
 
 async function getAboutPageData(): Promise<any> {

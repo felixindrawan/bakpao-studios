@@ -1,4 +1,4 @@
-import Media, { MediaProps } from "@/app/[lang]/components/strapi/shared/Media";
+import Media, { MediaProps } from "@/app/components/strapi/shared/Media";
 
 type GalleryProps = {
   data: {
