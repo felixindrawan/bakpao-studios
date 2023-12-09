@@ -32,6 +32,7 @@ export default function LayoutRoute({
     title: string;
     description: string;
   }>({ title: "", description: "" });
+  const [sideNavOpen, setSideNavOpen] = useState(false);
 
   const fetchAllCollections = useCallback(
     async (start: number, limit: number) => {
@@ -87,6 +88,11 @@ export default function LayoutRoute({
     );
   }
 
+  const toggleSideNav = useCallback(() => {
+    setSideNavOpen(!sideNavOpen);
+    console.log(sideNavOpen);
+  }, [sideNavOpen]);
+
   useEffect(() => {
     fetchAllCollections(0, Number(process.env.NEXT_PUBLIC_PAGE_LIMIT));
   }, [fetchAllCollections]);
@@ -98,23 +104,27 @@ export default function LayoutRoute({
       <CollectionInfo
         title={currentCollection?.title}
         description={currentCollection?.description}
+        toggleSideNav={toggleSideNav}
       />
       <div className="lg:grid lg:grid-cols-12 lg:gap-8">
         {/* Left Navbar */}
-        <aside className=" col-span-3 hidden min-h-[50vh] lg:block ">
-          <CollectionSelect collections={data} currentCollection={params.slug}>
-            {/* Load more button */}
-            {meta!.pagination.start + meta!.pagination.limit <
-              meta!.pagination.total && (
-              <a
-                className="text-md cursor-pointer font-light hover:underline"
-                onClick={loadMoreCollections}
-              >
-                Load more collections...
-              </a>
-            )}
-          </CollectionSelect>
-        </aside>
+        <CollectionSelect
+          collections={data}
+          currentCollection={params.slug}
+          sideNavOpen={sideNavOpen}
+          toggleSideNav={toggleSideNav}
+        >
+          {/* Load more button */}
+          {meta!.pagination.start + meta!.pagination.limit <
+            meta!.pagination.total && (
+            <a
+              className="text-md cursor-pointer font-light hover:underline"
+              onClick={loadMoreCollections}
+            >
+              Load more collections...
+            </a>
+          )}
+        </CollectionSelect>
         <div className="lg:col-span-9">
           {/* Main Portfolio */}
           {children}

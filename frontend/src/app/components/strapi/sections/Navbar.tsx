@@ -4,8 +4,8 @@ import { usePathname } from "next/navigation";
 import StrapiMedia, {
   StrapiMediaProps,
 } from "@/app/components/strapi/native/StrapiMedia";
-import { useTheme } from "next-themes";
 import { Theme } from "@/app/components/ThemeProvider";
+import { useTheme } from "next-themes";
 
 interface NavLink {
   id: number;
@@ -60,12 +60,19 @@ export default function Navbar({
           aria-label="Back to homepage"
           className="flex justify-center p-2"
         >
-          {logoImage && logoImageDark && (
-            <StrapiMedia
-              data={{ file: theme === Theme.DARK ? logoImageDark : logoImage }}
-              className="sm:max-w-sm"
-            />
-          )}
+          {theme === Theme.LIGHT
+            ? logoImage && (
+                <StrapiMedia
+                  data={{ file: logoImage }}
+                  className="sm:max-w-sm"
+                />
+              )
+            : logoImageDark && (
+                <StrapiMedia
+                  data={{ file: logoImageDark }}
+                  className="sm:max-w-sm"
+                />
+              )}
         </Link>
         {logoText && (
           <h2 className="text-center text-2xl font-light">{logoText}</h2>

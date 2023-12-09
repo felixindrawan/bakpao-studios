@@ -11,13 +11,14 @@ type GalleryProps = {
 
 export default function Gallery({ data, columns = 4 }: GalleryProps) {
   const { name, media, padding } = data;
+  const cols = media?.length < 4 ? 2 : columns;
 
   return (
     // Masonry gallery
     // source: https://tailwindflex.com/simon-scheffer/masonry-grid
     <div
       id={name}
-      className={`columns-2 gap-4 md:columns-3 lg:columns-${columns}  [&>img:not(:first-child)]:mt-4`}
+      className={`columns-2 gap-4 md:columns-3 lg:columns-${cols}  [&>img:not(:first-child)]:mt-4`}
       style={{ padding: padding ? "0 1rem " : 0 }}
     >
       {(media || []).map(({ image, name }, index) => (

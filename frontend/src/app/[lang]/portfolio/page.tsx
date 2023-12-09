@@ -41,6 +41,7 @@ export default function PortfolioRoute() {
   const [meta, setMeta] = useState<Meta | undefined>();
   const [data, setData] = useState<any>([]);
   const [isLoading, setLoading] = useState(true);
+  const [sideNavOpen, setSideNavOpen] = useState(false);
 
   const fetchData = useCallback(async (start: number, limit: number) => {
     setLoading(true);
@@ -77,6 +78,11 @@ export default function PortfolioRoute() {
     fetchData(nextCollections, Number(process.env.NEXT_PUBLIC_PAGE_LIMIT));
   }
 
+  const toggleSideNav = useCallback(() => {
+    setSideNavOpen(!sideNavOpen);
+    console.log(sideNavOpen);
+  }, [sideNavOpen]);
+
   useEffect(() => {
     fetchData(0, Number(process.env.NEXT_PUBLIC_PAGE_LIMIT));
   }, [fetchData]);
@@ -84,14 +90,16 @@ export default function PortfolioRoute() {
   if (isLoading) return <Loader />;
 
   return (
-    <div className="mx-auto space-y-5 sm:px-6 lg:max-w-7xl lg:px-8 ">
-      <CollectionInfo title="All Collections" />
-      <div className="lg:grid lg:grid-cols-12 lg:gap-8">
-        {/* Left Navbar */}
-        <aside className=" col-span-3 hidden min-h-[50vh] lg:block ">
+    <>
+      <div className="mx-auto space-y-5 sm:px-6 lg:max-w-7xl lg:px-8 ">
+        <CollectionInfo title="All Collections" toggleSideNav={toggleSideNav} />
+        <div className="lg:grid lg:grid-cols-12 lg:gap-8">
+          {/* Left Navbar */}
           <CollectionSelect
             collections={data}
             currentCollection={ALL_COLLECTIONS}
+            sideNavOpen={sideNavOpen}
+            toggleSideNav={toggleSideNav}
           >
             {/* Load more button */}
             {meta!.pagination.start + meta!.pagination.limit <
@@ -104,12 +112,12 @@ export default function PortfolioRoute() {
               </a>
             )}
           </CollectionSelect>
-        </aside>
-        <div className="lg:col-span-9">
-          {/* Main Portfolio */}
-          <CollectionList collections={data} />
+          <div className="lg:col-span-9">
+            {/* Main Portfolio */}
+            <CollectionList collections={data} />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

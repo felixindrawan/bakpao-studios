@@ -19,6 +19,16 @@
     },
     "logoText": {
       "type": "string"
+    },
+    "logoImgDark": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }
