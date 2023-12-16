@@ -22,8 +22,8 @@ interface Article {
 
 function selectedFilter(current: string, selected: string) {
   return current === selected
-    ? "px-3 py-1 rounded-lg hover:underline dark:bg-violet-700 dark:text-gray-100"
-    : "px-3 py-1 rounded-lg hover:underline dark:bg-violet-400 dark:text-gray-900";
+    ? "px-3 py-1 rounded-lg hover:underline p-4 bg-violet-700 text-gray-100 mr-2 mb-2"
+    : "px-3 py-1 rounded-lg hover:underline dark:bg-violet-400 dark:text-gray-900  mr-2  mb-2  p-4 border-2 border-violet-700 dark:border-0";
 }
 
 export default function ArticleSelect({
@@ -39,11 +39,10 @@ export default function ArticleSelect({
   };
 }) {
   return (
-    <div className="relative min-h-[365px] rounded-lg p-4 dark:bg-gray-900">
+    <div className="relative min-h-[365px] rounded-lg border-2 border-violet-700 p-4 dark:bg-gray-900">
       <h4 className="text-xl font-semibold">Browse By Category</h4>
-
       <div>
-        <div className="flex flex-wrap space-x-2 py-6 dark:border-gray-400">
+        <div className="flex flex-wrap pb-4 pt-6 dark:border-gray-400 ">
           {categories.map((category: Category) => {
             if (category.attributes.articles.data.length === 0) return null;
             return (
@@ -59,7 +58,7 @@ export default function ArticleSelect({
               </Link>
             );
           })}
-          <Link href={"/"} className={selectedFilter("", "filter")}>
+          <Link href={"/blog"} className={selectedFilter("", "filter")}>
             #all
           </Link>
         </div>
@@ -75,7 +74,7 @@ export default function ArticleSelect({
                     href={`/blog/${params.category}/${article.attributes.slug}`}
                     className={`${
                       params.slug === article.attributes.slug &&
-                      "text-violet-400"
+                      "text-violet-700"
                     }  transition-colors duration-200 hover:text-violet-400 hover:underline`}
                   >
                     {article.attributes.title}

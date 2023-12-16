@@ -5,6 +5,7 @@ import { fetchAPI } from "@/app/[lang]/utils/fetch-api";
 import Loader from "@/app/components/Loader";
 import PostList from "@/app/components/blog/PostList";
 import PageHeader from "@/app/components/PageHeader";
+import FeaturedArticle from "@/app/components/blog/FeaturedArticle";
 
 interface Meta {
   pagination: {
@@ -67,8 +68,8 @@ export default function BlogRoute() {
   if (isLoading) return <Loader />;
 
   return (
-    <div>
-      <PageHeader heading="Our Blog" text="Checkout Something Cool" />
+    <div className="space-y-32">
+      <FeaturedArticle article={data[0]} />
       <PostList data={data}>
         {meta!.pagination.start + meta!.pagination.limit <
           meta!.pagination.total && (
