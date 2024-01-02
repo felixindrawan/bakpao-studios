@@ -1,4 +1,8 @@
+"use client";
+
 import { ArticleCard } from "@/app/components/blog/ArticleCard";
+import { StrapiMediaProps } from "../strapi/native/StrapiMedia";
+import { useCallback, useMemo, useState } from "react";
 
 export type Article = {
   id: 4;
@@ -9,14 +13,7 @@ export type Article = {
     createdAt: string;
     updatedAt: string;
     publishedAt: string;
-    cover: {
-      data: {
-        attributes: {
-          url: string;
-          alt: string;
-        };
-      };
-    };
+    cover: StrapiMediaProps["file"];
     category: {
       data: {
         attributes: {
@@ -49,10 +46,54 @@ export default function PostList({
   data: Article[];
   children?: React.ReactNode;
 }) {
+  const [filteredArticle, setFilteredArticles] = useState(articles);
+  const categories = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          articles.map(
+            (article) => article.attributes.category.data.attributes.name,
+          ),
+        ),
+      ),
+    [articles],
+  );
+  const handleCategoryFilter = useCallback(
+    (category: string) => {
+      if (category === "All") {
+        setFilteredArticles(articles);
+      } else {
+        setFilteredArticles(
+          articles.filter(
+            (article) =>
+              article.attributes.category.data.attributes.name === category,
+          ),
+        );
+      }
+    },
+    [articles],
+  );
   return (
-    <section className="container mx-auto space-y-6 p-6 sm:space-y-12">
+    <section className="space-y-6 sm:space-y-12">
+      <div className="space-y-2">
+        <h3>Browse by Category</h3>
+        <select
+          className="select select-bordered w-full max-w-xs bg-opacity-0"
+          onChange={(e) => handleCategoryFilter(e.target.value)}
+        >
+          {["All", ...categories].map((category) => (
+            <option
+              selected={category === "All"}
+              key={category}
+              className="text-white"
+            >
+              {category}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="grid grid-cols-1 justify-center gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {articles.map((article) => (
+        {filteredArticle.map((article) => (
           <ArticleCard key={article.id} article={article} />
         ))}
       </div>

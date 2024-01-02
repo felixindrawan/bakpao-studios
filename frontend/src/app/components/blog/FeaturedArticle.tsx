@@ -1,7 +1,8 @@
-import { formatDate, getStrapiMedia } from "@/app/[lang]/utils/api-helpers";
+import { formatDate } from "@/app/[lang]/utils/api-helpers";
 import { Article } from "@/app/components/blog/PostList";
-import Image from "next/image";
 import Link from "next/link";
+import StrapiMedia from "../strapi/native/StrapiMedia";
+import TwoColumnBanner from "../strapi/sections/TwoColumnBanner";
 
 // The text color can't be properly seen in darkmode. We need to change it specifically for dark mode, depending on which component it's used for
 // Check the `FeaturedArticle` vs the `ArticleCard`.
@@ -27,16 +28,15 @@ export function ArticleInfo({
         </span>
       </div>
       <h3
-        className={`mb-8 line-clamp-3 flex-1 overflow-hidden  text-2xl font-semibold group-hover:underline group-focus:underline dark:text-${textColor}`}
+        className={`mb-4 line-clamp-3 flex-1 overflow-hidden  text-2xl font-semibold group-hover:underline group-focus:underline dark:text-${textColor}`}
       >
         {article.attributes.title}
       </h3>
       {/* TO DO : Insert Tags (Do we need tags?)*/}
-      <Link
-        href={`/blog/${category?.slug}/${article.attributes.slug}`}
-        className="hover:underline focus:underline"
-      >
-        <p className={`dark:text-${textColor} flex font-semibold `}>
+      <Link href={`/blog/${category?.slug}/${article.attributes.slug}`}>
+        <p
+          className={`dark:text-${textColor} flex font-semibold hover:underline focus:underline group-hover:underline group-focus:underline`}
+        >
           READ BLOG{" "}
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -58,34 +58,38 @@ export function ArticleInfo({
   );
 }
 
-export default function FeaturedArticle({ article }: { article: Article }) {
-  const imageUrl = getStrapiMedia(
-    article.attributes.cover.data?.attributes.url,
-  );
-
+export default function FeaturedArticle({
+  article,
+  category,
+}: {
+  article: Article;
+  category?: Article["attributes"]["category"];
+}) {
+  const coverImage = article.attributes.cover;
   return (
-    <div className="full-container container-padding flex min-h-[300px] flex-col-reverse bg-violet-200 lg:min-h-[500px] lg:flex-row ">
-      {/* Text container */}
-      <div className="flex flex-1 ">
-        <div className="flex flex-col justify-center pb-6 align-middle lg:m-auto">
-          <h1 className="p-6 text-4xl font-semibold dark:text-black">
-            Featured <span className="font-bold text-violet-700">Blog</span>
+    <TwoColumnBanner
+      textColumn={
+        <div className="my-auto flex flex-col pb-4">
+          <h1 className="px-6 pt-6 text-4xl font-semibold dark:text-black">
+            Featured{" "}
+            {category ? (
+              <>
+                Article on{" "}
+                <span className="font-bold text-violet-700">#{category}</span>
+              </>
+            ) : (
+              <span className="font-bold text-violet-700">Blog</span>
+            )}
           </h1>
           <ArticleInfo article={article} textColor="black" />
         </div>
-      </div>
-      {/* Image Container */}
-      {/* Minus the container padding */}
-      <div className="full-container flex flex-1 lg:px-48 ">
-        {imageUrl && (
-          <Image
-            alt="Featured Blog thumbnail"
-            fill
-            className=" !static"
-            src={imageUrl}
-          />
-        )}
-      </div>
-    </div>
+      }
+      imageColumn={
+        <StrapiMedia
+          data={{ file: coverImage }}
+          style={{ objectFit: "cover" }}
+        />
+      }
+    />
   );
 }

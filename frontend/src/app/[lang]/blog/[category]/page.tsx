@@ -1,6 +1,7 @@
 import PageHeader from "@/app/components/PageHeader";
 import { fetchAPI } from "@/app/[lang]/utils/fetch-api";
 import PostList from "@/app/components/blog/PostList";
+import FeaturedArticle from "@/app/components/blog/FeaturedArticle";
 
 async function fetchPostsByCategory(filter: string) {
   try {
@@ -14,7 +15,7 @@ async function fetchPostsByCategory(filter: string) {
         },
       },
       populate: {
-        cover: { fields: ["url"] },
+        cover: { populate: "*" },
         category: {
           populate: "*",
         },
@@ -41,11 +42,9 @@ export default async function CategoryRoute({
 
   if (data.length === 0) return <div>Not Posts In this category</div>;
 
-  const { name, description } = data[0]?.attributes.category.data.attributes;
-
   return (
-    <div>
-      <PageHeader heading={name} text={description} />
+    <div className="space-y-6 sm:space-y-12">
+      <FeaturedArticle article={data[0]} category={filter} />
       <PostList data={data} />
     </div>
   );
