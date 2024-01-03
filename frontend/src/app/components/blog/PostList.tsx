@@ -80,13 +80,10 @@ export default function PostList({
         <select
           className="select select-bordered w-full max-w-xs bg-opacity-0"
           onChange={(e) => handleCategoryFilter(e.target.value)}
+          defaultValue={"All"}
         >
           {["All", ...categories].map((category) => (
-            <option
-              selected={category === "All"}
-              key={category}
-              className="text-white"
-            >
+            <option key={category} className="text-white">
               {category}
             </option>
           ))}

@@ -33,27 +33,25 @@ export function ArticleInfo({
         {article.attributes.title}
       </h3>
       {/* TO DO : Insert Tags (Do we need tags?)*/}
-      <Link href={`/blog/${category?.slug}/${article.attributes.slug}`}>
-        <p
-          className={`dark:text-${textColor} flex font-semibold hover:underline focus:underline group-hover:underline group-focus:underline`}
+      <p
+        className={`dark:text-${textColor} flex font-semibold hover:underline focus:underline group-hover:underline group-focus:underline`}
+      >
+        READ BLOG{" "}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth="1.5"
+          stroke="currentColor"
+          className="h-6 w-6"
         >
-          READ BLOG{" "}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            className="h-6 w-6"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
-            />
-          </svg>
-        </p>
-      </Link>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75"
+          />
+        </svg>
+      </p>
     </div>
   );
 }
@@ -63,13 +61,13 @@ export default function FeaturedArticle({
   category,
 }: {
   article: Article;
-  category?: Article["attributes"]["category"];
+  category?: Article["attributes"]["category"]["data"]["attributes"]["slug"];
 }) {
   const coverImage = article.attributes.cover;
   return (
     <TwoColumnBanner
       textColumn={
-        <div className="my-auto flex flex-col pb-4">
+        <div className="group my-auto flex flex-col pb-4">
           <h1 className="px-6 pt-6 text-4xl font-semibold dark:text-black">
             Featured{" "}
             {category ? (
@@ -81,7 +79,9 @@ export default function FeaturedArticle({
               <span className="font-bold text-violet-700">Blog</span>
             )}
           </h1>
-          <ArticleInfo article={article} textColor="black" />
+          <Link href={`/blog/${category}/${article.attributes.slug}`}>
+            <ArticleInfo article={article} textColor="black" />
+          </Link>
         </div>
       }
       imageColumn={
