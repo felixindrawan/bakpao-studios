@@ -18,6 +18,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "images.pexels.com",
       },
+      {
+        protocol: "https",
+        hostname: "bakpao-studios-frontend-production.up.railway.app",
+        pathname: "/uploads/**",
+      }, // fix for image hosting from backend
     ],
   },
 };
