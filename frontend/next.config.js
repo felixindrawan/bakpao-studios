@@ -4,8 +4,6 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true
   },
-  // fix for https://github.com/vercel/next.js/issues/37825
-  output: "standalone",
   images: {
     remotePatterns: [
       {
