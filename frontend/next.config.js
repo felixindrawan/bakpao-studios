@@ -20,7 +20,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "bakpao-studios-frontend-production.up.railway.app",
+        hostname: "bakpao-studios-backend-production.up.railway.app",
         pathname: "/uploads/**",
       }, // fix for image hosting from backend
     ],
