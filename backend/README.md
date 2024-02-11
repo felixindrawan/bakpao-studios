@@ -29,7 +29,7 @@ Read more: https://docs.strapi.io/dev-docs/deployment/heroku
 
 Ensure heroku cli is installed
 ```
-heroku git:remote -a bakpao-studios-frontend
+heroku git:remote -a bakpao-studios-backend
 ```
 
 # 🚀 Getting started with Strapi
