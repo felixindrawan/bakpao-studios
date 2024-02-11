@@ -1,3 +1,37 @@
+# Bakpao Studios Backend
+
+Backend for Bakpao Studios, built with Strapi.
+
+## Getting Started
+
+### Environment Variables
+```
+ADMIN_JWT_SECRET=
+API_TOKEN_SALT=
+APP_KEYS=
+DATABASE_CLIENT=
+DATABASE_FILENAME=
+DATABASE_URL=
+HOST=
+JWT_SECRET=
+PORT=
+TRANSFER_TOKEN_SALT=
+```
+
+### Installing and executing program locally
+```
+yarn && yarn dev
+```
+
+## ⚙️ Deployment
+Deployed with Heroku
+Read more: https://docs.strapi.io/dev-docs/deployment/heroku
+
+Ensure heroku cli is installed
+```
+heroku git:remote -a bakpao-studios-frontend
+```
+
 # 🚀 Getting started with Strapi
 
 Strapi comes with a full featured [Command Line Interface](https://docs.strapi.io/developer-docs/latest/developer-resources/cli/CLI.html) (CLI) which lets you scaffold and manage your project in seconds.
@@ -31,20 +65,6 @@ npm run build
 # or
 yarn build
 ```
-
-## ⚙️ Deployment
-
-Strapi gives you many possible deployment options for your project. Find the one that suits you on the [deployment section of the documentation](https://docs.strapi.io/developer-docs/latest/setup-deployment-guides/deployment.html).
-
-## 📚 Learn more
-
-- [Resource center](https://strapi.io/resource-center) - Strapi resource center.
-- [Strapi documentation](https://docs.strapi.io) - Official Strapi documentation.
-- [Strapi tutorials](https://strapi.io/tutorials) - List of tutorials made by the core team and the community.
-- [Strapi blog](https://docs.strapi.io) - Official Strapi blog containing articles made by the Strapi team and the community.
-- [Changelog](https://strapi.io/changelog) - Find out about the Strapi product updates, new features and general improvements.
-
-Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/strapi). Your feedback and contributions are welcome!
 
 ## ✨ Community
 
